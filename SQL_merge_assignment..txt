@@ -1,0 +1,11 @@
+1. create customer table with cid PK,name,email,lastChange Timestamp columns.
+Note : whenever the sql table is updated or deleted, the lastChange timestamp column should update to current timestamp.
+
+2. insert 3 records in customers table with id 1,2,3.
+
+3. Create customer_backup table same as customer table with same data.
+
+4. update email of cid=1 in customer table
+5. delete cid=2 in customer table
+6. Insert cid=4 in customer table
+7. Use merge statement to update customer_backup table using customer table.
