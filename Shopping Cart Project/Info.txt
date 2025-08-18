@@ -1,0 +1,12 @@
+Create a shopping cart with the following basic functionalities:
+Display a menu of items with the corresponding quantities available in the store and the cost of the items.
+Accept customer input for the items required.
+Display a message if the item is out of stock.
+Take input of customer details.
+Calculate delivery charges based on the distance from the store.
+Display a final bill with the items purchased and the customer details.
+Conditions For delivery charges
+    If upto 15 km then 50 Rs
+    If 15 to 30 km then 100 rs
+    else
+    No delivery available

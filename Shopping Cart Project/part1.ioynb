@@ -1,0 +1,39 @@
+
+Final Function:
+Create a main function 
+call every small function, 
+
+execute the main
+
+then, 
+step 1:
+create a dictnory of apple with price and quantity [ dictnory with key and value]
+
+create the function to call the dict function with both the parameter
+
+step2:
+
+For  creating the cart 
+using while would be the best so that it keep countie inside the logic 
+
+
+Insde it 
+try and catch can be used to catch the issues addressand print the info you want to the user you wantthem to use 
+and then could be continued with the while loop:
+
+Now, 
+for the cart
+all the info willbe stored in empty dict we created at begining
+
+also update the original dictonary 
+
+
+
+Step3:
+Creata a function with details of customer details [Name, address,  delivery]
+for delivery logic use a logic the distance for km as mentioned 
+
+Step 4:
+Print the final bill
+
+
