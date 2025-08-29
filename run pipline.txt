@@ -1,0 +1,16 @@
+
+docker compose down or docker compose stop
+
+docker compose up -d or docker compose start
+
+docker ps
+
+docker compose exec spark bash -lc "python -V; pyspark --version; ls -la /home/jovyan/work/jars; env | grep SNOWFLAKE"
+or
+
+docker compose exec spark bash -lc "python -V; pyspark --version; ls -la /home/jovyan/work/jars; env | grep -E '^SNOWFLAKE_' || true"
+docker compose exec spark python /home/jovyan/work/generate_data.py
+docker compose exec spark spark-submit --jars "/home/jovyan/work/jars/spark-snowflake_2.12-2.14.0-spark_3.4.jar,/home/jovyan/work/jars/snowflake-jdbc-3.14.4.jar" /home/jovyan/work/ingest_to_snowflake.py
+8docker compose exec spark spark-submit --jars "/home/jovyan/work/jars/spark-snowflake_2.12-2.14.0-spark_3.4.jar,/home/jovyan/work/jars/snowflake-jdbc-3.14.4.jar" /home/jovyan/work/transform_data.py
+docker compose exec spark spark-submit --jars "/home/jovyan/work/jars/spark-snowflake_2.12-2.14.0-spark_3.4.jar,/home/jovyan/work/jars/snowflake-jdbc-3.14.4.jar" /home/jovyan/work/create_kpis.py
+

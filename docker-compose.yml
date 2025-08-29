@@ -1,0 +1,42 @@
+
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres_fraud
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: fraud_detect
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d fraud_detect"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  spark:
+    image: jupyter/pyspark-notebook:latest   # Should be Spark 3.4.x for your Snowflake connector jars
+    container_name: spark_app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env                              # loads SNOWFLAKE_* variables
+    environment:
+      PYSPARK_PYTHON: python
+      PYSPARK_DRIVER_PYTHON: python
+    ports:
+      - "8888:8888"                         # Jupyter
+      - "4040:4040"                         # Spark UI
+    volumes:
+      - ./app:/home/jovyan/work             # your code + jars live here
+      - ./output:/data/output               # generator writes CSV here
+    command: >
+      bash -lc "pip install -r /home/jovyan/work/requirements.txt && start-notebook.sh"
+
+volumes:
+  postgres_data:
